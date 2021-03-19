@@ -29,7 +29,7 @@ public class Rubrica extends Application {
         listClienti.add(new Cliente(2,16100,"r","fieschir","42879879124", 234, "ciao","genova"));
          listClienti.add(new Cliente(2,16100,"r","roberto","42879879124", 234, "ciao","genova"));
           listClienti.add(new Cliente(2,16100,"r","daneil","42879879124", 234, "ciao","genova"));
-           listClienti.add(new Cliente(2,16100,"r","manuel","42879879124", 234, "ciao","genova"));
+           listClienti.add(new Cliente(2,16100,"r","manuel","42879879124", 567, "ciao","genova"));
 
    }
     public void start(Stage primaryStage) throws Exception {
