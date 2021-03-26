@@ -25,12 +25,7 @@ public class Rubrica extends Application {
     
     
     public Rubrica(){
-       listClienti.add(new Cliente(2,16100,"robertofdsnw","fieschi","42879879124", 234, "ciao","genova"));
-        listClienti.add(new Cliente(2,16100,"r","fieschir","42879879124", 234, "ciao","genova"));
-         listClienti.add(new Cliente(2,16100,"r","roberto","42879879124", 234, "ciao","genova"));
-          listClienti.add(new Cliente(2,16100,"r","daneil","42879879124", 234, "ciao","genova"));
-           listClienti.add(new Cliente(2,16100,"r","manuel","42879879124", 57, "ciao","genova"));
-
+        listClienti=Cliente.leggiXml();
    }
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/FXMLDocument.fxml"));

@@ -1,5 +1,6 @@
 package it.edu.gastaldiabba.rubrica.model;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
@@ -23,18 +24,18 @@ import org.w3c.dom.NodeList;
 public class Cliente {
     private String ragSoc;
     private int affidabilita;    
-    private int telefono;
+    private String telefono;
     private String email;
     private String citta;
     private int cap;
     private String piva;
     private String indirizzo;
-    
+    private ArrayList <String> note ;
     
    // ArrayList<String> note
     static ObservableList<Cliente> listClienti = FXCollections.observableArrayList();
    
-    public Cliente(int aff, int cap, String email, String ragsoc, String piva, int tel, String indirizzo, String citta){ // costruttore
+    public Cliente(int aff, int cap, String email, String ragsoc, String piva, String tel, String indirizzo, String citta, ArrayList<String>note){ // costruttore
       this.affidabilita=aff;
       this.cap=cap;
       this.email= email;
@@ -43,6 +44,7 @@ public class Cliente {
       this.telefono=tel;
       this.indirizzo= indirizzo;
       this.citta=citta;
+      this.note=note;
    }
    
    public Cliente(Cliente cliente){ // costruttore copia
@@ -54,12 +56,16 @@ public class Cliente {
       this.telefono= cliente.getTelefono();
       this.indirizzo= cliente.getIndirizzo();
       this.citta = cliente.getCitta();
+      this.note=cliente.getNote();
    }
-
+    
+   public ArrayList <String> getNote(){
+       return note;
+   }
     public String getRagSoc(){
         return ragSoc;
     }
-    public int getTelefono(){
+    public String getTelefono(){
         return telefono;
     }
     
@@ -94,7 +100,7 @@ public class Cliente {
         citta=h;
     }
     
-    public void setTelefono(int b){
+    public void setTelefono(String b){
         telefono=b;
     }
     
@@ -123,7 +129,7 @@ public class Cliente {
                "\nEmail: "+getEmail()+ "\nIndirizzo "+ getIndirizzo()+ "\nAffidabilita: "+getAffidabilita()+ "\nPartita Iva:"+ getPiva());
    }
    public String toString(){
-       return("Ragione sociale: "+ getRagSoc()+ " Citta: "+getCitta()+ "Cap: "+getCap()+ "\n Telefono: "+getTelefono()+ " Email: "+getEmail()+ " Indirizzo "+ getIndirizzo()+"Affidabilita: "+getAffidabilita()+ "Partita Iva:"+ getPiva());
+       return("Ragione sociale: "+ getRagSoc()+ " Citta: "+getCitta()+ " Cap: "+getCap()+ "\n Telefono: "+getTelefono()+ " Email: "+getEmail()+ " Indirizzo "+ getIndirizzo()+" Affidabilita: "+getAffidabilita()+ "Partita Iva:"+ getPiva());
        
    }
    
@@ -201,9 +207,11 @@ public class Cliente {
     /**
      *
      * @param name
-     
-    public static Cliente[] leggiXml (){
-         Cliente [] pers = null;
+     */
+    public static ObservableList<Cliente> leggiXml (){
+          ObservableList<Cliente> a = FXCollections.observableArrayList();
+          
+         
          JFileChooser J=new JFileChooser();
         if(J.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
        try{
@@ -213,32 +221,38 @@ public class Cliente {
            Document doc= db.parse(selectedFile);
            doc.getDocumentElement().normalize();
            NodeList nodelist = doc.getElementsByTagName("cliente");
-           pers= new Cliente [nodelist.getLength()];
+           
            for( int t=0;t< nodelist.getLength();t++){
                Node node = nodelist.item(t);
            
            if(node.getNodeType()== Node.ELEMENT_NODE){
                Element element = (Element) node;
-               pers[t]= new Cliente();
-               pers[t].setRagSoc(element.getElementsByTagName("ragsoc").item(0).getTextContent());
-                pers[t].setIndirizzo(element.getElementsByTagName("indirizzo").item(0).getTextContent());
-                 pers[t].setPiva(element.getElementsByTagName("piva").item(0).getTextContent());
-                pers[t].setCitta(element.getElementsByTagName("citta").item(0).getTextContent());
-                 pers[t].setTelefono(Integer.parseInt(element.getElementsByTagName("telefono").item(0).getTextContent()));
-                  pers[t].setEmail(element.getElementsByTagName("email").item(0).getTextContent());
-                  pers[t].setCap(Integer.parseInt(element.getElementsByTagName("cap").item(0).getTextContent()));
-                 pers[t].setAffidabilita(Integer.parseInt(element.getElementsByTagName("affidabilita").item(0).getTextContent()));
+                ArrayList<String> arrNote = new ArrayList<String>();
+               String ragSoc=(element.getElementsByTagName("ragsoc").item(0).getTextContent());
+                String indirizzo =(element.getElementsByTagName("indirizzo").item(0).getTextContent());
+                String piva=(element.getElementsByTagName("piva").item(0).getTextContent());
+                String citta=(element.getElementsByTagName("citta").item(0).getTextContent());
+                 String telefono=element.getElementsByTagName("telefono").item(0).getTextContent();
+                  String email=(element.getElementsByTagName("email").item(0).getTextContent());
+                  int cap=(Integer.parseInt(element.getElementsByTagName("cap").item(0).getTextContent()));
+                 int aff=(Integer.parseInt(element.getElementsByTagName("affidabilita").item(0).getTextContent()));
+               String note=(element.getElementsByTagName("note").item(0).getTextContent());
+               String [] ciao=note.split("/");
+               for(int g=0;g<ciao.length;g++){
+                   arrNote.add(ciao[g]);
+               }
+                 Cliente b=new Cliente( aff, cap, email, ragSoc, piva, telefono, indirizzo, citta,arrNote);
+                a.add(b);
+                
     }
            }
        }
        catch(Exception E){
           E.printStackTrace();
        }
-        return pers;
-    
+           
+    }
+        return a;
+    }
+
 }
-        return pers;
-}
-*/
-}
-    
