@@ -1,5 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
+ /* To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -13,6 +12,8 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -20,7 +21,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -42,26 +46,35 @@ public class FXMLDocumentController implements Initializable {
     private VBox hboxNote;
     @FXML
     private Button btnAggiungiNota;
+   
     @FXML
-    private Button btnSalva;
+    private HBox hboxCrud;
+    @FXML
+    private Button btnModificaNota;
+  @FXML
+    private ToggleButton btnElimina;
+    @FXML
+    private FlowPane flowPane;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
         hboxNote.setSpacing(5.0);
+        btnElimina.setDisable(true);
         btnAggiungiNota.setDisable(true);
-       btnSalva.setDisable(true);
+       btnModificaNota.setDisable(true);
        txtDettagli.setText("Dettagli:");
        listClienti.setItems(Rubrica.getlistClienti());
-       
-    }    
-
+ }
     @FXML
     private void selection(MouseEvent event) {
+        btnElimina.setDisable(false);
+       btnElimina.setSelected(false);
        btnAggiungiNota.setDisable(false);
-       btnSalva.setDisable(false);
+       btnModificaNota.setDisable(false);
        noteVisual.clear();
         hboxNote.getChildren().clear();
         Cliente a=listClienti.getSelectionModel().getSelectedItem();
@@ -78,6 +91,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void aggiungiNota(ActionEvent event) {
+        btnElimina.setSelected(false);
         TextField txt = new TextField("");
         Cliente a=listClienti.getSelectionModel().getSelectedItem();
         hboxNote.getChildren().add(txt);
@@ -96,6 +110,29 @@ public class FXMLDocumentController implements Initializable {
          for(int v=0;v<noteVisual.size();v++){
             hboxNote.getChildren().add(noteVisual.get(v));
         }
-    }
+         btnElimina.setSelected(false);
+    
 }
-
+    @FXML
+    
+    private void elimina(ActionEvent event) {
+         Cliente a=listClienti.getSelectionModel().getSelectedItem();
+        for(int i=0;i<noteVisual.size();i++){
+         noteVisual.get(i).setOnMousePressed(new EventHandler<MouseEvent>() {
+        @Override public void handle(MouseEvent mouseEvent) {
+          final Object selectedNode = mouseEvent.getSource();
+          final int    selectedIdx  = hboxNote.getChildren().indexOf(selectedNode);
+                 hboxNote.getChildren().remove(selectedIdx);
+                 noteVisual.remove(selectedIdx);
+                 
+       };
+               });
+        }
+        a.getNote().clear();
+         for(int v=0;v<noteVisual.size();v++){
+            a.getNote().add(noteVisual.get(v).getText());
+        }
+    }
+    
+}
+    
