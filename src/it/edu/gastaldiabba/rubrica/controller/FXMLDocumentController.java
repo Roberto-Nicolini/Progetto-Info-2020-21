@@ -114,14 +114,13 @@ public class FXMLDocumentController implements Initializable {
     
 }
     @FXML
-    
     private void elimina(ActionEvent event) {
          Cliente a=listClienti.getSelectionModel().getSelectedItem();
         for(int i=0;i<noteVisual.size();i++){
          noteVisual.get(i).setOnMousePressed(new EventHandler<MouseEvent>() {
         @Override public void handle(MouseEvent mouseEvent) {
           final Object selectedNode = mouseEvent.getSource();
-          final int    selectedIdx  = hboxNote.getChildren().indexOf(selectedNode);
+          final int selectedIdx  = hboxNote.getChildren().indexOf(selectedNode);
                  hboxNote.getChildren().remove(selectedIdx);
                  noteVisual.remove(selectedIdx);
                  

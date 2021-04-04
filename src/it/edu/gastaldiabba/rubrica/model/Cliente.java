@@ -238,6 +238,7 @@ public class Cliente {
                  int aff=(Integer.parseInt(element.getElementsByTagName("affidabilita").item(0).getTextContent()));
                String note=(element.getElementsByTagName("note").item(0).getTextContent());
                String [] ciao=note.split("/");
+            
                for(int g=0;g<ciao.length;g++){
                    arrNote.add(ciao[g]);
                }
