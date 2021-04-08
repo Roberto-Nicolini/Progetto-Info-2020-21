@@ -6,6 +6,7 @@ package it.edu.gastaldiabba.rubrica.controller;
 
 import it.edu.gastaldiabba.rubrica.Rubrica;
 import it.edu.gastaldiabba.rubrica.model.Cliente;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -27,6 +28,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
 
 /**
  * FXML Controller class
@@ -37,7 +41,6 @@ public class FXMLDocumentController implements Initializable {
   ArrayList <TextField> noteVisual = new ArrayList<TextField>();
     @FXML
     private RadioButton ciao;
-    private ListView<Cliente> list;
     @FXML
     private TextArea txtDettagli;
     @FXML
@@ -55,22 +58,31 @@ public class FXMLDocumentController implements Initializable {
     private ToggleButton btnElimina;
     @FXML
     private FlowPane flowPane;
+    @FXML
+    private Button btnEliminaCliente;
+    @FXML
+    private Button btnAggiungiCliente;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
+        hboxCrud.setSpacing(64);
+        flowPane.setHgap(10);
+        hboxNote.setSpacing(5.0);
+        btnEliminaCliente.setDisable(true);
+        btnElimina.setDisable(true);
         hboxNote.setSpacing(5.0);
         btnElimina.setDisable(true);
         btnAggiungiNota.setDisable(true);
        btnModificaNota.setDisable(true);
-       txtDettagli.setText("Dettagli:");
+      
        listClienti.setItems(Rubrica.getlistClienti());
  }
     @FXML
     private void selection(MouseEvent event) {
+       btnEliminaCliente.setDisable(false);
         btnElimina.setDisable(false);
        btnElimina.setSelected(false);
        btnAggiungiNota.setDisable(false);
@@ -80,12 +92,13 @@ public class FXMLDocumentController implements Initializable {
         Cliente a=listClienti.getSelectionModel().getSelectedItem();
         txtDettagli.setText(a.getDettagli());
        
-        
+        if(a.getNote().size()>0){
         for(int i=0;i<a.getNote().size();i++){
             noteVisual.add(new TextField(a.getNote().get(i)));
         }
         for(int b=0;b<noteVisual.size();b++){
         hboxNote.getChildren().add(noteVisual.get(b));
+        }
         }
     }
 
@@ -100,7 +113,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void modifica(ActionEvent event) {
+    private void modifica(ActionEvent event) throws ParserConfigurationException, TransformerException, TransformerConfigurationException, IOException {
          Cliente a=listClienti.getSelectionModel().getSelectedItem();
          a.getNote().clear();
         for(int v=0;v<noteVisual.size();v++){
@@ -111,27 +124,55 @@ public class FXMLDocumentController implements Initializable {
             hboxNote.getChildren().add(noteVisual.get(v));
         }
          btnElimina.setSelected(false);
-    
+    Cliente.create();
 }
     @FXML
     private void elimina(ActionEvent event) {
          Cliente a=listClienti.getSelectionModel().getSelectedItem();
+         
         for(int i=0;i<noteVisual.size();i++){
+           boolean e= btnElimina.isSelected();
+           if(e==true){
          noteVisual.get(i).setOnMousePressed(new EventHandler<MouseEvent>() {
         @Override public void handle(MouseEvent mouseEvent) {
           final Object selectedNode = mouseEvent.getSource();
           final int selectedIdx  = hboxNote.getChildren().indexOf(selectedNode);
                  hboxNote.getChildren().remove(selectedIdx);
                  noteVisual.remove(selectedIdx);
-                 
+                 System.out.println(e);
        };
                });
+        
+        }else if(e==false){
+                noteVisual.get(i).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        final Object selectedNode = event.getSource();
+                 final int selectedIdx  = hboxNote.getChildren().indexOf(selectedNode);
+                 noteVisual.get(selectedIdx).setEditable(true);
+                    };
+                });
+            
+        };
+                }
         }
-        a.getNote().clear();
-         for(int v=0;v<noteVisual.size();v++){
-            a.getNote().add(noteVisual.get(v).getText());
-        }
+        
+    
+    @FXML
+    private void aggiungiCliente(ActionEvent event) {
+        Rubrica.mostraPopupAggiungi();
+        listClienti.setItems(Rubrica.getlistClienti());
     }
+
+    @FXML
+    private void eliminaCliente(ActionEvent event) throws ParserConfigurationException, TransformerException, TransformerConfigurationException, IOException {
+        int i=listClienti.getSelectionModel().getSelectedIndex();
+        Rubrica.getlistClienti().remove(i);
+        listClienti.setItems(Rubrica.getlistClienti());
+        Cliente.create();
+    }
+
+
     
 }
     
