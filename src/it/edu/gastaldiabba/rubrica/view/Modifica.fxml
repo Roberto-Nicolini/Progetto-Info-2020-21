@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="583.0" prefWidth="476.0" stylesheets="@AggiungiStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.ModificaController">
+   <children>
+      <TextField fx:id="txtfld8" layoutX="213.0" layoutY="414.0" prefHeight="52.0" prefWidth="52.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <Label layoutX="161.0" layoutY="2.0" prefHeight="67.0" prefWidth="130.0" text="Modifica :">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Button fx:id="btneliminatutto" layoutX="340.0" layoutY="420.0" mnemonicParsing="false" onAction="#eliminatutto" prefHeight="38.0" prefWidth="87.0" text="Elimina Tutto" />
+      <Button fx:id="btnModifica" layoutX="28.0" layoutY="523.0" mnemonicParsing="false" onAction="#modifica" prefHeight="38.0" prefWidth="120.0" text="Modifica">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="28.0" layoutY="75.0" prefHeight="26.0" prefWidth="159.0" text="Ragione Sociale : ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld1" layoutX="213.0" layoutY="76.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina1" layoutX="404.0" layoutY="76.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld1" text="X" />
+      <Label layoutX="28.0" layoutY="125.0" prefHeight="26.0" prefWidth="159.0" text="Città :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld2" layoutX="213.0" layoutY="126.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina2" layoutX="404.0" layoutY="126.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld2" text="X" />
+      <Label layoutX="28.0" layoutY="175.0" prefHeight="26.0" prefWidth="159.0" text="CAP :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld3" layoutX="213.0" layoutY="176.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina3" layoutX="404.0" layoutY="176.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld3" text="X" />
+      <Label layoutX="28.0" layoutY="225.0" prefHeight="26.0" prefWidth="159.0" text="Numero Telefonico :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld4" layoutX="213.0" layoutY="226.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina4" layoutX="404.0" layoutY="226.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld4" text="X" />
+      <Label layoutX="28.0" layoutY="275.0" prefHeight="26.0" prefWidth="159.0" text="Indirizzo Email :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld5" layoutX="213.0" layoutY="276.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina5" layoutX="404.0" layoutY="276.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld5" text="X" />
+      <Label layoutX="28.0" layoutY="325.0" prefHeight="26.0" prefWidth="159.0" text="Indirizzo :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld6" layoutX="213.0" layoutY="326.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina6" layoutX="404.0" layoutY="326.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld6" text="X" />
+      <Label layoutX="28.0" layoutY="375.0" prefHeight="26.0" prefWidth="159.0" text="IVA :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfld7" layoutX="213.0" layoutY="376.0" prefHeight="25.0" prefWidth="195.0" />
+      <Button fx:id="btnelimina7" layoutX="404.0" layoutY="376.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld7" text="X" />
+      <Label layoutX="28.0" layoutY="425.0" prefHeight="26.0" prefWidth="150.0" text="Affidabilità :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="Annulla" layoutX="307.0" layoutY="523.0" mnemonicParsing="false" onAction="#Annulla" prefHeight="38.0" prefWidth="120.0" text="Annulla">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="txtflderor" editable="false" layoutX="26.0" layoutY="482.0" prefHeight="26.0" prefWidth="399.0" text="Errore" />
+   </children>
+</AnchorPane>
