@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -67,7 +68,7 @@ public class AggiungiController implements Initializable {
     private Button btnelimina7;
     @FXML
     private Button btnAnnulla;
-
+    
     /**
      * Initializes the controller class.
      */
@@ -76,47 +77,164 @@ public class AggiungiController implements Initializable {
     private TextField txtflderor;
     
     public void initialize(URL url, ResourceBundle rb) {
-       
+        txtfld1.setText("");
+        txtfld2.setText("");
+        txtfld3.setText("");
+        txtfld4.setText("");
+        txtfld5.setText("");
+        txtfld6.setText("");
+        txtfld7.setText("");
+       txtflderor.setVisible(false);
+       txtflderor.setEditable(false);
+       txtfld8.setAlignment(Pos.CENTER);
     }    
 
     @FXML
     private void aggiungiCliente(ActionEvent event) throws ParserConfigurationException, TransformerException, TransformerConfigurationException, IOException {
-       TextField[] arrtxtfld= {txtfld1,txtfld2,txtfld3,txtfld4,txtfld5,txtfld6,txtfld7,txtfld8};
-        try{
-
-        String ragSoc=txtfld1.getText();
-        String citta=txtfld2.getText();
-
-       int cap=Integer.parseInt(txtfld3.getText());
+       TextField[] arrtxtfld= {txtfld1,txtfld2,txtfld3,txtfld4,txtfld5,txtfld6,txtfld7,txtfld8};    
+       int cap;
+       int aff;
+       int z=0;
+        for(int g=0;g<arrtxtfld.length;g++){
+            if(arrtxtfld[g].getText().isEmpty()){
+                arrtxtfld[g]= null;
+            }
+            }
+            for(int k=0;k<arrtxtfld.length;k++){
+                if(arrtxtfld[k]==null){
+                    z++;
+                }
+                if(z>=2){
+                    txtflderor.setText("Più campi sono vuoti, inseriscili");
+                    txtflderor.setVisible(true);
+                    return;
+                }
+            }
+        if(txtfld1.getText().isEmpty()){
+            txtflderor.setText("Inserire la ragione Sociale");
+            txtflderor.setVisible(true);
+            return;
+        }
         
+        String ragSoc=txtfld1.getText();
+        
+        if(txtfld2.getText().isEmpty()){
+            txtflderor.setText("Inserire la città");
+            txtflderor.setVisible(true);
+            return;
+        }   
+        String citta=txtfld2.getText();
+        if(txtfld3.getText().isEmpty()){
+            txtflderor.setText("Inserire il cap");
+            txtflderor.setVisible(true);
+            return;
+        }
+        try{
+        cap=Integer.parseInt(txtfld3.getText());
+        }catch(NumberFormatException e){
+            txtflderor.setText("Il cap deve essere un numero intero");
+            txtflderor.setVisible(true);
+            return;
+        }
+        if(txtfld4.getText().isEmpty()){
+            txtflderor.setText("Inserire il telefono");
+            txtflderor.setVisible(true);
+            return;
+        }
         String tel=txtfld4.getText();
+        if(txtfld5.getText().isEmpty()){
+            txtflderor.setText("Inserire la mail");
+            txtflderor.setVisible(true);
+            return;
+        }
         String email= txtfld5.getText();
+        if(txtfld6.getText().isEmpty()){
+            txtflderor.setText("Inserire Indirizzo");
+            txtflderor.setVisible(true);
+            return;
+        }
         String indirizzo = txtfld6.getText();
+         if(txtfld7.getText().isEmpty()){
+            txtflderor.setText("Inserire la partita iva");
+            txtflderor.setVisible(true);
+            return;
+        }
         String piva= txtfld7.getText();
-       
-       int aff= Integer.parseInt(txtfld8.getText());
-     
+        if(txtfld8.getText().isEmpty()){
+            txtflderor.setText("Inserire l'affidabiilità");
+            txtflderor.setVisible(true);
+            return;
+        }
+       try{
+        aff= Integer.parseInt(txtfld8.getText());
+       }catch(NumberFormatException E){
+           txtflderor.setText("L'affidabilità deve essere un numero intero tra 1 e 10");
+            txtflderor.setVisible(true);
+            return;
+       }
         ArrayList <String> note = new ArrayList<String>();
-        for(int i=0;i<arrtxtfld.length;i++){
-            if(arrtxtfld[i].getText().isEmpty()){
-                arrtxtfld[i]=null;
-            }       
-        }
-        if((arrtxtfld[0]==null)||(arrtxtfld[1]==null)||(arrtxtfld[3]==null)||(arrtxtfld[4]==null)||(arrtxtfld[5]==null)||(arrtxtfld[6]==null)){
-            txtflderor.setText("errore");
-        }
-        else{
+        
+        
         Cliente a= new Cliente(aff,cap,email,ragSoc,piva,tel,indirizzo,citta,note);
         Rubrica.getlistClienti().add(a);
         Cliente.create();
-        Rubrica.eliminaPopupAggiungi();
-        }
-       }catch(NumberFormatException e){
-                    
-                txtflderor.setText("Errore");
-                
-            }       
-          }
+        Stage stage=(Stage) btnelimina1.getScene().getWindow();
+        stage.close();
+        
+   }
+
+    @FXML
+    private void eliminatutto(ActionEvent event) {
+        txtfld1.setText("");
+        txtfld2.setText("");
+        txtfld3.setText("");
+        txtfld4.setText("");
+        txtfld5.setText("");
+        txtfld6.setText("");
+        txtfld7.setText("");
+        txtfld8.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld1(ActionEvent event) {
+        txtfld1.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld2(ActionEvent event) {
+        txtfld2.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld3(ActionEvent event) {
+        txtfld3.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld4(ActionEvent event) {
+        txtfld4.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld5(ActionEvent event) {
+        txtfld5.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld6(ActionEvent event) {
+        txtfld6.setText("");
+    }
+
+    @FXML
+    private void eliminacontenutotxtfld7(ActionEvent event) {
+        txtfld7.setText("");
+    }
+
+    @FXML
+    private void annulla(ActionEvent event) {
+        Stage stage=(Stage) btnelimina1.getScene().getWindow();
+        stage.close();
+    }
     }
    
 //}

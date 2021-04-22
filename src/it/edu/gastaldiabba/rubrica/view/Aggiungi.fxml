@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.AggiungiController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="450.0" stylesheets="@AggiungiStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.AggiungiController">
    <children>
       <TextField fx:id="txtfld8" layoutX="213.0" layoutY="414.0" prefHeight="52.0" prefWidth="52.0">
          <font>
@@ -17,7 +17,7 @@
          <font>
             <Font size="28.0" />
          </font></Label>
-      <Button fx:id="btnEliminaTutto" layoutX="340.0" layoutY="420.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="87.0" text="Elimina Tutto" />
+      <Button fx:id="btnEliminaTutto" layoutX="340.0" layoutY="420.0" mnemonicParsing="false" onAction="#eliminatutto" prefHeight="38.0" prefWidth="87.0" text="Elimina Tutto" />
       <Button fx:id="btnaggiungiCliente" layoutX="43.0" layoutY="511.0" mnemonicParsing="false" onAction="#aggiungiCliente" prefHeight="38.0" prefWidth="120.0" text="Aggiungi ">
          <font>
             <Font size="18.0" />
@@ -28,55 +28,55 @@
          </font>
       </Label>
       <TextField fx:id="txtfld1" layoutX="213.0" layoutY="76.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina1" layoutX="404.0" layoutY="76.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina1" layoutX="404.0" layoutY="76.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld1" text="X" />
       <Label layoutX="28.0" layoutY="125.0" prefHeight="26.0" prefWidth="159.0" text="Città :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtfld2" layoutX="213.0" layoutY="126.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina2" layoutX="404.0" layoutY="126.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina2" layoutX="404.0" layoutY="126.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld2" text="X" />
       <Label layoutX="28.0" layoutY="175.0" prefHeight="26.0" prefWidth="159.0" text="CAP :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtfld3" layoutX="213.0" layoutY="176.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina3" layoutX="404.0" layoutY="176.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina3" layoutX="404.0" layoutY="176.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld3" text="X" />
       <Label layoutX="28.0" layoutY="225.0" prefHeight="26.0" prefWidth="159.0" text="Numero Telefonico :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtfld4" layoutX="213.0" layoutY="226.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina4" layoutX="404.0" layoutY="226.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina4" layoutX="404.0" layoutY="226.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld4" text="X" />
       <Label layoutX="28.0" layoutY="275.0" prefHeight="26.0" prefWidth="159.0" text="Indirizzo Email :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtfld5" layoutX="213.0" layoutY="276.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina5" layoutX="404.0" layoutY="276.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina5" layoutX="404.0" layoutY="276.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld5" text="X" />
       <Label layoutX="28.0" layoutY="325.0" prefHeight="26.0" prefWidth="159.0" text="Indirizzo :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtfld6" layoutX="213.0" layoutY="326.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina6" layoutX="404.0" layoutY="326.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina6" layoutX="404.0" layoutY="326.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld6" text="X" />
       <Label layoutX="28.0" layoutY="375.0" prefHeight="26.0" prefWidth="159.0" text="IVA :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
       <TextField fx:id="txtfld7" layoutX="213.0" layoutY="376.0" prefHeight="25.0" prefWidth="195.0" />
-      <Button fx:id="btnelimina7" layoutX="404.0" layoutY="376.0" mnemonicParsing="false" text="X" />
+      <Button fx:id="btnelimina7" layoutX="404.0" layoutY="376.0" mnemonicParsing="false" onAction="#eliminacontenutotxtfld7" text="X" />
       <Label layoutX="28.0" layoutY="425.0" prefHeight="26.0" prefWidth="150.0" text="Affidabilità :">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnAnnulla" layoutX="291.0" layoutY="511.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="120.0" text="Annulla">
+      <Button fx:id="btnAnnulla" layoutX="291.0" layoutY="511.0" mnemonicParsing="false" onAction="#annulla" prefHeight="38.0" prefWidth="120.0" text="Annulla">
          <font>
             <Font size="18.0" />
          </font>

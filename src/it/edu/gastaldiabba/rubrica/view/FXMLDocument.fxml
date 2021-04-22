@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="1000.0"  xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="1000.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.FXMLDocumentController">
    <children>
       <Pane layoutX="603.0" layoutY="78.0" prefHeight="278.0" prefWidth="395.0">
          <children>
@@ -50,9 +50,9 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" layoutX="617.0" layoutY="384.0" prefHeight="224.0" prefWidth="370.0">
+      <ScrollPane fx:id="scrlpanenote" hbarPolicy="NEVER" layoutX="617.0" layoutY="384.0" prefHeight="224.0" prefWidth="370.0">
          <content>
-            <VBox fx:id="hboxNote" prefHeight="244.0" prefWidth="376.0" />
+            <VBox fx:id="hboxNote" alignment="TOP_CENTER" prefHeight="244.0" prefWidth="376.0" />
          </content>
       </ScrollPane>
       <HBox fx:id="hboxCrud" layoutX="62.5" layoutY="624.0" prefHeight="100.0" prefWidth="590.0">
@@ -61,7 +61,7 @@
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="120.0" text="Modifica">
+            <Button fx:id="btnModifica" mnemonicParsing="false" onMouseClicked="#sendData" prefHeight="41.0" prefWidth="120.0" text="Modifica">
                <font>
                   <Font size="18.0" />
                </font></Button>

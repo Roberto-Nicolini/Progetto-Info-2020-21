@@ -5,8 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import static java.lang.System.getProperty;
 import java.util.ArrayList;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,7 +37,7 @@ public class Cliente {
     private String indirizzo;
     private ArrayList <String> note ;
     
-   // ArrayList<String> note
+   
     static ObservableList<Cliente> listClienti = FXCollections.observableArrayList();
     
      public Cliente(int aff, int cap, String email, String ragsoc, String piva, String tel, String indirizzo, String citta){ // costruttore
@@ -70,6 +73,10 @@ public class Cliente {
       this.citta = cliente.getCitta();
       this.note=cliente.getNote();
    }
+
+    public Cliente() {
+      
+    }
     
     public ArrayList <String> getNote(){
        return note;
@@ -137,13 +144,16 @@ public class Cliente {
     }
        
     public String getDettagli(){
-       return("Dettagli:\n" + "Ragione sociale: "+ getRagSoc()+ "\nCitta: "+getCitta()+ "\nCap: "+getCap()+ "\nTelefono: "+getTelefono()+ 
+       return("Ragione sociale: "+ getRagSoc()+ "\nCitta: "+getCitta()+ "\nCap: "+getCap()+ "\nTelefono: "+getTelefono()+ 
                "\nEmail: "+getEmail()+ "\nIndirizzo "+ getIndirizzo()+ "\nAffidabilita: "+getAffidabilita()+ "\nPartita Iva:"+ getPiva());
+    } 
+    public String toStringBold(){
+        return("  "+getRagSoc()+" "+getCitta()+" "+getCap());
+    }
+    public String toString(){
+        return("  "+getEmail()+" "+" "+getTelefono()+" "+getIndirizzo()+" "+getPiva()); 
     }
     
-    public String toString(){
-       return("Ragione sociale: "+ getRagSoc()+ " Citta: "+getCitta()+ " Cap: "+getCap()+ "\n Telefono: "+getTelefono()+ " Email: "+getEmail()+ " Indirizzo "+ getIndirizzo()+" Affidabilita: "+getAffidabilita()+ "Partita Iva:"+ getPiva()); 
-    }
    
     public static  final String xmlFilePath(){
        String p=getProperty("user.home")+getProperty("file.separator");

@@ -1,0 +1,25 @@
+.text-field{
+    -fx-background-radius: 100;
+}
+.list-view{
+    -fx-background-color: transparent;
+    -fx-selection-bar: #b8f2f1 ;
+    -fx-selection-bar-non-focused: #b8f2f1;
+    /*
+    -fx-font:15px Tahoma ;*/
+}
+.list-view .list-cell:even {
+-fx-border-width: 5;
+-fx-border-radius: 20;
+-fx-border-color: transparent;
+-fx-text-fill: black;
+-fx-background-radius: 20;
+
+}
+.list-view .list-cell:odd {
+-fx-border-width: 5;
+-fx-border-radius: 20;
+-fx-border-color: transparent;
+-fx-text-fill: black;
+-fx-background-radius: 20;
+}
