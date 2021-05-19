@@ -45,7 +45,7 @@ public class Rubrica extends Application {
         primaryStage.setScene(new Scene(root));
       
 
-       // popupprimario.setScene(new Scene(root));
+       /*
         popupStage = new Stage();
         popupStage1=new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Aggiungi.fxml"));
@@ -63,7 +63,7 @@ public class Rubrica extends Application {
         popupStage1.setTitle("Modifica Cliente");
         popupStage1.initModality(Modality.APPLICATION_MODAL);
         popupStage1.initOwner(primaryStage);
-       
+       */
         primaryStage.show();
     }
      public static ObservableList<Cliente> getlistClienti() {

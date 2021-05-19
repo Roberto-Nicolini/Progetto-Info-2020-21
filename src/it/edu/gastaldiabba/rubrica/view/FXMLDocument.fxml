@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="682.0" prefWidth="1000.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.FXMLDocumentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1000.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.FXMLDocumentController">
    <children>
       <Pane layoutX="603.0" layoutY="78.0" prefHeight="278.0" prefWidth="395.0">
          <children>
@@ -30,21 +30,21 @@
             </Label>
          </children>
       </Pane>
-      <TextField layoutX="14.0" layoutY="20.0" prefHeight="37.0" prefWidth="235.0" />
+      <TextField layoutX="14.0" layoutY="20.0" prefHeight="37.0" prefWidth="235.0" promptText="Esegui una ricerca..." />
       <Label cache="true" layoutX="279.0" layoutY="21.0" prefHeight="25.0" prefWidth="112.0" text="Visualizza per :">
          <font>
             <Font size="16.0" />
          </font></Label>
-      <RadioButton fx:id="ciao" layoutX="407.0" layoutY="25.0" mnemonicParsing="false" text="Ragione Sociale" />
-      <RadioButton layoutX="625.0" layoutY="25.0" mnemonicParsing="false" text="Affidabilità" />
-      <RadioButton layoutX="546.0" layoutY="24.0" mnemonicParsing="false" text="Città" />
-      <RadioButton layoutX="869.0" layoutY="25.0" mnemonicParsing="false" text="Crescente" />
-      <RadioButton layoutX="869.0" layoutY="55.0" mnemonicParsing="false" text="Decrescente" />
+      <RadioButton fx:id="filterRag" layoutX="407.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioRag" text="Ragione Sociale" />
+      <RadioButton fx:id="filterAff" layoutX="625.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioAff" text="Affidabilità" />
+      <RadioButton fx:id="filterCitta" layoutX="546.0" layoutY="24.0" mnemonicParsing="false" onAction="#filtraggioCitta" text="Città" />
+      <RadioButton fx:id="filterCres" layoutX="869.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioCres" text="Crescente" />
+      <RadioButton fx:id="filterDecr" layoutX="869.0" layoutY="55.0" mnemonicParsing="false" onAction="#filtraggioDecr" text="Decrescente" />
       <Label cache="true" layoutX="786.0" layoutY="20.0" prefHeight="25.0" prefWidth="79.0" text="In ordine :">
          <font>
             <Font size="14.0" />
          </font></Label>
-      <ListView fx:id="listClienti" layoutX="14.0" layoutY="78.0" onMouseClicked="#selection" prefHeight="530.0" prefWidth="604.0" />
+      <ListView fx:id="listClienti" layoutX="14.0" layoutY="78.0" onMouseClicked="#selection" prefHeight="495.0" prefWidth="604.0" />
       <Label cache="true" layoutX="626.0" layoutY="353.0" prefHeight="37.0" prefWidth="119.0" text="Note del Cliente :">
          <font>
             <Font size="15.0" />
@@ -55,7 +55,7 @@
             <VBox fx:id="hboxNote" alignment="TOP_CENTER" prefHeight="244.0" prefWidth="376.0" />
          </content>
       </ScrollPane>
-      <HBox fx:id="hboxCrud" layoutX="62.5" layoutY="624.0" prefHeight="100.0" prefWidth="590.0">
+      <HBox fx:id="hboxCrud" layoutX="63.0" layoutY="624.0" prefHeight="80.0" prefWidth="536.0">
          <children>
             <Button fx:id="btnAggiungiCliente" mnemonicParsing="false" onAction="#aggiungiCliente" prefHeight="41.0" prefWidth="120.0" text="Aggiungi ">
                <font>
@@ -89,6 +89,8 @@
             </ToggleButton>
          </children>
       </FlowPane>
+      <Button fx:id="btnImporta" layoutX="500.0" layoutY="583.0" mnemonicParsing="false" onAction="#importa" text="Importa" />
+      <RadioButton fx:id="filterCap" layoutX="407.0" layoutY="49.0" mnemonicParsing="false" onAction="#filtraggioCap" prefHeight="18.0" prefWidth="58.0" text="Cap" />
     
    </children>
 </AnchorPane>

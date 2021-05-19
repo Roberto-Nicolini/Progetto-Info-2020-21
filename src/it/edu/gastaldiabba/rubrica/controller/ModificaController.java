@@ -10,6 +10,8 @@ import it.edu.gastaldiabba.rubrica.Rubrica;
 import it.edu.gastaldiabba.rubrica.model.Cliente;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -73,7 +75,7 @@ public class ModificaController implements Initializable {
     Cliente a= new Cliente(0,0,"","","","","","");
     @FXML
     private TextField txtflderor;
-    
+    int g=0;
     
     /**
      * Initializes the controller class.
@@ -101,7 +103,7 @@ public class ModificaController implements Initializable {
     private void modifica(ActionEvent event) throws ParserConfigurationException, TransformerException, TransformerConfigurationException, IOException {
         TextField[] arrtxtfld= {txtfld1,txtfld2,txtfld3,txtfld4,txtfld5,txtfld6,txtfld7,txtfld8};  
         int z=0;
-        for(int i=0;i<Rubrica.getlistClienti().size();i++){
+       
             for(int g=0;g<arrtxtfld.length;g++){
             if(arrtxtfld[g].getText().isEmpty()){
                 arrtxtfld[g]= null;
@@ -117,20 +119,25 @@ public class ModificaController implements Initializable {
                     return;
                 }
             }
-            if(listClienti.get(i).equals(a)){
+            if(listClienti.get(g).equals(a)){
                    if(txtfld8.getText().isEmpty()){
                     txtflderor.setText("Inserisci l'affidabilità");
                     txtflderor.setVisible(true);
                     return;
+                   }try{
+                Rubrica.getlistClienti().get(g).setAffidabilita(Integer.parseInt(txtfld8.getText()));
+                   }catch(NumberFormatException e){
+                        txtflderor.setVisible(true);
+                       txtflderor.setText("L'affidabilità deve essere un numero intero cmpreso tra 0 e 10");
+                       return;
                    }
-                Rubrica.getlistClienti().get(i).setAffidabilita(Integer.parseInt(txtfld8.getText()));
                    if(txtfld3.getText().isEmpty()){
                      txtflderor.setText("Inserisci il cap");
                     txtflderor.setVisible(true);
                     return;
                  }
                    try{
-                Rubrica.getlistClienti().get(i).setCap(Integer.parseInt(txtfld3.getText()));
+                Rubrica.getlistClienti().get(g).setCap(Integer.parseInt(txtfld3.getText()));
                    }catch(NumberFormatException e){
                        txtflderor.setVisible(true);
                        txtflderor.setText("Il cap deve essere un numero intero");
@@ -141,45 +148,62 @@ public class ModificaController implements Initializable {
                     txtflderor.setVisible(true);
                     return;
                 }else{
-                Rubrica.getlistClienti().get(i).setRagSoc(txtfld1.getText()); 
+                StringBuilder ragSoc1=new StringBuilder(txtfld1.getText());
+                 char r=ragSoc1.charAt(0);
+                 char r1=Character.toUpperCase(r);
+        
+                
+                  ragSoc1.setCharAt(0, r1);
+                    String ragSoc=ragSoc1.toString();
+                Rubrica.getlistClienti().get(g).setRagSoc(ragSoc); 
                 }
                if(txtfld5.getText().isEmpty()){
                     txtflderor.setText("Inserisci la email");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(i).setEmail(txtfld5.getText());
+                Rubrica.getlistClienti().get(g).setEmail(txtfld5.getText());
                 if(txtfld6.getText().isEmpty()){
                     txtflderor.setText("Inserisci l'indirizzo");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(i).setIndirizzo(txtfld6.getText());   
+                Rubrica.getlistClienti().get(g).setIndirizzo(txtfld6.getText());   
                 if(txtfld7.getText().isEmpty()){
                     txtflderor.setText("Inserisci la partita iva");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(i).setPiva(txtfld7.getText());     
+                Rubrica.getlistClienti().get(g).setPiva(txtfld7.getText());     
                 if(txtfld4.getText().isEmpty()){
                     txtflderor.setText("Inserisci il telefono");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(i).setTelefono(txtfld4.getText());  
+                Rubrica.getlistClienti().get(g).setTelefono(txtfld4.getText());  
                 if(txtfld2.getText().isEmpty()){
                     txtflderor.setText("Inserisci la città");
                     txtflderor.setVisible(true);
                     return;
                 }
-                Rubrica.getlistClienti().get(i).setCitta(txtfld2.getText());   
-                Cliente.create();
+            StringBuilder citta1=new StringBuilder(txtfld2.getText());
+        char r2=citta1.charAt(0);
+        char r3=Character.toUpperCase(r2);
+        
+        
+        citta1.setCharAt(0, r3);
+        String citta=citta1.toString();
+              Rubrica.getlistClienti().get(g).setCitta(citta);   
+            }
+        
+          
+              Cliente.create();
+               for(int k=0;k<listClienti.size();k++){
+         System.out.println(Rubrica.getlistClienti().get(k).getRagSoc());
+     }
                 Stage stage = (Stage) txtfld1.getScene().getWindow();
                 stage.close();
                 
-            }
-        }
-        
         
     }
 
@@ -190,7 +214,7 @@ public class ModificaController implements Initializable {
          stage.close();
     }
 
-    void transferMessage(Cliente selectedItem,int i) {
+    void transferMessage(Cliente selectedItem,int b,boolean e) {
         txtflderor.setVisible(false);
         txtfld1.setText(selectedItem.getRagSoc());
         txtfld2.setText(selectedItem.getCitta());
@@ -202,8 +226,15 @@ public class ModificaController implements Initializable {
         txtfld8.setAlignment(Pos.CENTER);
         txtfld8.setText(String.valueOf(selectedItem.getAffidabilita()).toString());
         listClienti.setAll(Rubrica.getlistClienti());
-        listClienti.remove(i);
-        listClienti.add(i, a);
+     
+        for(int l=0;l<listClienti.size();l++){
+            if(listClienti.get(l).toString().equals(selectedItem.toString())){
+                g=l;
+                break;
+            }
+        }
+        listClienti.remove(g);
+        listClienti.add(g, a);
         
     }
 

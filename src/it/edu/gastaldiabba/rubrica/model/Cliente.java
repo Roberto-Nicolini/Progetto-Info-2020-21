@@ -230,10 +230,7 @@ public class Cliente {
         
     }
         
-    /**
-     *
-     * @param name
-     */
+   
     public static ObservableList<Cliente> leggiXml () throws TransformerException, SAXException, IOException, ParserConfigurationException{
     
        try{

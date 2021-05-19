@@ -110,20 +110,26 @@ public class AggiungiController implements Initializable {
                     return;
                 }
             }
-        if(txtfld1.getText().isEmpty()){
-            txtflderor.setText("Inserire la ragione Sociale");
-            txtflderor.setVisible(true);
-            return;
-        }
+       StringBuilder ragSoc1=new StringBuilder(txtfld1.getText());
+        char r=ragSoc1.charAt(0);
+        char r1=Character.toUpperCase(r);
         
-        String ragSoc=txtfld1.getText();
+        
+        ragSoc1.setCharAt(0, r1);
+        String ragSoc=ragSoc1.toString();
         
         if(txtfld2.getText().isEmpty()){
             txtflderor.setText("Inserire la città");
             txtflderor.setVisible(true);
             return;
         }   
-        String citta=txtfld2.getText();
+        StringBuilder citta1=new StringBuilder(txtfld2.getText());
+        char r2=citta1.charAt(0);
+        char r3=Character.toUpperCase(r2);
+        
+        
+        citta1.setCharAt(0, r3);
+        String citta=citta1.toString();
         if(txtfld3.getText().isEmpty()){
             txtflderor.setText("Inserire il cap");
             txtflderor.setVisible(true);
@@ -161,17 +167,16 @@ public class AggiungiController implements Initializable {
         }
         String piva= txtfld7.getText();
         if(txtfld8.getText().isEmpty()){
-            txtflderor.setText("Inserire l'affidabiilità");
-            txtflderor.setVisible(true);
-            return;
+         aff=0;
         }
+        else{
        try{
         aff= Integer.parseInt(txtfld8.getText());
        }catch(NumberFormatException E){
-           txtflderor.setText("L'affidabilità deve essere un numero intero tra 1 e 10");
+           txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
             txtflderor.setVisible(true);
             return;
-       }
+       }}
         ArrayList <String> note = new ArrayList<String>();
         
         
@@ -235,6 +240,8 @@ public class AggiungiController implements Initializable {
         Stage stage=(Stage) btnelimina1.getScene().getWindow();
         stage.close();
     }
+
+   
     }
    
 //}
