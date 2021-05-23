@@ -150,8 +150,12 @@ public class Cliente {
     public String toStringBold(){
         return("  "+getRagSoc()+" "+getCitta()+" "+getCap());
     }
-    public String toString(){
+    public String toStringNorm(){
         return("  "+getEmail()+" "+" "+getTelefono()+" "+getIndirizzo()+" "+getPiva()); 
+    }
+     public String toString(){
+        return("Ragione sociale: "+ getRagSoc()+ "Citta: "+getCitta()+ "Cap: "+getCap()+ "Telefono: "+getTelefono()+ 
+               "Email: "+getEmail()+ "Indirizzo "+ getIndirizzo()+ "Affidabilita: "+getAffidabilita()+ "Partita Iva:"+ getPiva()+ "Note: "+getNote()); 
     }
     
    

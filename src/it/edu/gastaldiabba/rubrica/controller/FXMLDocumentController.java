@@ -36,6 +36,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -105,10 +108,17 @@ public class FXMLDocumentController implements Initializable {
     private RadioButton filterDecr;
     @FXML
     private RadioButton filterCap;
+    @FXML
+    private Button btnSearch;
+    @FXML
+    private Button btnAnnullaRicerca;
+    @FXML
+    private TextField txtRicerca;
 
     @FXML
     private void importa(ActionEvent event) throws ParserConfigurationException, SAXException, IOException, TransformerException {
-          JFileChooser J=new JFileChooser();
+          int j=0;
+        JFileChooser J=new JFileChooser();
           try{
           if(J.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
               File selectedFile = J.getSelectedFile();
@@ -136,11 +146,39 @@ public class FXMLDocumentController implements Initializable {
                  for(int g=0;g<ciao.length;g++){
                    arrNote.add(ciao[g]);
                  }
+                 StringBuilder ragSoc1=new StringBuilder(ragSoc);
+        char r=ragSoc1.charAt(0);
+        char r1=Character.toUpperCase(r);
+        
+        
+        ragSoc1.setCharAt(0, r1);
+        ragSoc=ragSoc1.toString();
+        StringBuilder citta1=new StringBuilder(citta);
+        char r2=ragSoc1.charAt(0);
+        char r3=Character.toUpperCase(r2);
+        
+        int k=0;
+        ragSoc1.setCharAt(0, r3);
+        citta= citta.toString();
                  Cliente b=new Cliente( aff, cap, email, ragSoc, piva, telefono, indirizzo, citta,arrNote);
-                 Rubrica.getlistClienti().add(b);
+                 for(int i=0;i<Rubrica.getlistClienti().size();i++){
+                     if(b.toString().equals(Rubrica.getlistClienti().get(i).toString())){
+                        k++; 
+                        j=k;
+                     }
+                     
+                 }if(k==0){
+                    Rubrica.getlistClienti().add(b); 
+                 }
+                 
                  
               } //fine if
            }//fine for
+           if(j>0){
+               Alert a = new Alert(AlertType.INFORMATION);
+                     a.setContentText("Alcuni clienti non sono stati aggiunti in quanto già esistenti");
+                        a.show();
+           }
            listClienti.setItems(Rubrica.getlistClienti());
            Cliente.create();
           }
@@ -235,7 +273,7 @@ public class FXMLDocumentController implements Initializable {
             for(int j=0;j<k.size();j++){
                if(k.get(i).equals(Rubrica.getlistClienti().get(j).getAffidabilita())){
                      listClientiFilt.add(new Cliente(k.get(i),
-                  Rubrica.getlistClienti().get(j).getCap(),Rubrica.getlistClienti().get(j).getEmail(),Rubrica.getlistClienti().get(j).getRagSoc(),Rubrica.getlistClienti().get(i).getPiva()
+                  Rubrica.getlistClienti().get(j).getCap(),Rubrica.getlistClienti().get(j).getEmail(),Rubrica.getlistClienti().get(j).getRagSoc(),Rubrica.getlistClienti().get(j).getPiva()
           ,Rubrica.getlistClienti().get(j).getTelefono(),Rubrica.getlistClienti().get(j).getIndirizzo(),Rubrica.getlistClienti().get(j).getCitta(),Rubrica.getlistClienti().get(j).getNote()));
                    
                   Rubrica.getlistClienti().get(j).setAffidabilita(Rubrica.getlistClienti().get(j).getAffidabilita()+ 10);
@@ -362,7 +400,7 @@ public class FXMLDocumentController implements Initializable {
             for(int j=0;j<k.size();j++){
                if(k.get(i).equals(Rubrica.getlistClienti().get(j).getAffidabilita())){
                      listClientiFilt.add(new Cliente(k.get(i),
-                  Rubrica.getlistClienti().get(j).getCap(),Rubrica.getlistClienti().get(j).getEmail(),Rubrica.getlistClienti().get(j).getRagSoc(),Rubrica.getlistClienti().get(i).getPiva()
+                  Rubrica.getlistClienti().get(j).getCap(),Rubrica.getlistClienti().get(j).getEmail(),Rubrica.getlistClienti().get(j).getRagSoc(),Rubrica.getlistClienti().get(j).getPiva()
           ,Rubrica.getlistClienti().get(j).getTelefono(),Rubrica.getlistClienti().get(j).getIndirizzo(),Rubrica.getlistClienti().get(j).getCitta(),Rubrica.getlistClienti().get(j).getNote()));
                    
                   Rubrica.getlistClienti().get(j).setAffidabilita(Rubrica.getlistClienti().get(j).getAffidabilita()+ 10);
@@ -498,6 +536,60 @@ public class FXMLDocumentController implements Initializable {
         
     }
 
+    @FXML
+     private void ricerchiamo(ActionEvent event) {
+        String ricerca=txtRicerca.getText();
+       ricerca= ricerca.toLowerCase();
+         ObservableList<Cliente> listClientiRic = FXCollections.observableArrayList();
+        for(int g=0;g<Rubrica.getlistClienti().size();g++){
+            String c=Rubrica.getlistClienti().get(g).toString().toLowerCase();
+            if(c.contains(ricerca)){
+                listClientiRic.add(Rubrica.getlistClienti().get(g));
+            }
+             filterAff.setSelected(false);
+           filterRag.setSelected(false);
+           filterCitta.setSelected(false);
+           filterCap.setSelected(false);
+           filterAff.setDisable(true);
+           filterRag.setDisable(true);
+           filterCitta.setDisable(true);
+           filterCap.setDisable(true);
+           filterCres.setDisable(true);
+           filterDecr.setDisable(true);
+           filterCres.setSelected(false);
+           filterDecr.setSelected(false);
+           listClienti.setItems(Rubrica.getlistClienti());
+        }
+        if(listClientiRic.size()>0){
+        listClienti.setItems(listClientiRic);
+        }
+        else if(listClientiRic.size()==0){
+              Alert b = new Alert(AlertType.INFORMATION);
+        b.setContentText("Non è stato trovato alcun risultato valido\n");
+       // b.setHeaderText("Avvertenza");
+        b.setTitle("Informazione");
+        b.showAndWait();
+        filterAff.setDisable(false);
+           filterRag.setDisable(false);
+           filterCitta.setDisable(false);
+           filterCap.setDisable(false);
+           txtRicerca.setText("");
+        listClienti.setItems(Rubrica.getlistClienti());
+        }
+    }
+   
+
+    @FXML
+    private void Annulliamo(ActionEvent event) {
+          txtRicerca.setText("");
+        listClienti.setItems(Rubrica.getlistClienti());
+        filterAff.setDisable(false);
+           filterRag.setDisable(false);
+           filterCitta.setDisable(false);
+           filterCap.setDisable(false);
+    }
+
+ 
    
 
     /**
@@ -531,7 +623,7 @@ public class FXMLDocumentController implements Initializable {
                 txtAff.setEditable(false);
                 a.setText(name.toStringBold());
                 a.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
-                b.setText(name.toString());
+                b.setText(name.toStringNorm());
                 b.setFont(Font.font("Verdana", 12));
                 setGraphic(hbox);
             }
@@ -539,6 +631,15 @@ public class FXMLDocumentController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
+        Image img=new Image("/it/edu/gastaldiabba/rubrica/view/search1.png");
+        
+        ImageView view = new ImageView(img);
+        view.setFitHeight(65);
+        view.setFitWidth(35);
+      view.setPreserveRatio(true);
+      btnAnnullaRicerca.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+        btnSearch.setGraphic(view);
         filterCres.setDisable(true);
          filterDecr.setDisable(true);
         listClienti.setItems(Rubrica.getlistClienti());
@@ -569,12 +670,12 @@ public class FXMLDocumentController implements Initializable {
        btnModificaNota.setDisable(false);
        noteVisual.clear();
         hboxNote.getChildren().clear();
+     
         Cliente a=listClienti.getSelectionModel().getSelectedItem();
-        try{
+       if(listClienti.getItems().indexOf(a)!=-1){
+           
         txtDettagli.setText(a.getDettagli());
-        }catch(NullPointerException e){
-            System.out.println("a");
-        }
+      
         if(a.getNote().size()>0){
         for(int i=0;i<a.getNote().size();i++){
             noteVisual.add(new TextArea(a.getNote().get(i)));
@@ -584,10 +685,9 @@ public class FXMLDocumentController implements Initializable {
         }
         for(int b=0;b<noteVisual.size();b++){
         hboxNote.getChildren().add(noteVisual.get(b));
+        }}
         }
-        }else{
-            
-        }
+    
     }
 
     @FXML
@@ -597,7 +697,7 @@ public class FXMLDocumentController implements Initializable {
         txt.setPrefSize(120, 20);
         Cliente a=listClienti.getSelectionModel().getSelectedItem();
         hboxNote.getChildren().add(0,txt);
-        noteVisual.add(txt);
+        noteVisual.add(0,txt);
         //a.getNote().add()
     }
 
@@ -608,10 +708,10 @@ public class FXMLDocumentController implements Initializable {
         for(int v=0;v<noteVisual.size();v++){
             a.getNote().add(noteVisual.get(v).getText());
         }
-        hboxNote.getChildren().clear();
-         for(int v=0;v<noteVisual.size();v++){
-            hboxNote.getChildren().add(noteVisual.get(v));
-        }
+       // hboxNote.getChildren().clear();
+         //for(int v=0;v<noteVisual.size();v++){
+           // hboxNote.getChildren().add(noteVisual.get(v));
+        //}
          
          btnElimina.setSelected(false);
          for(int i=0;i<noteVisual.size();i++){

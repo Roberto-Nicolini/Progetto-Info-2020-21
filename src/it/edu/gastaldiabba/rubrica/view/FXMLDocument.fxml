@@ -30,7 +30,7 @@
             </Label>
          </children>
       </Pane>
-      <TextField layoutX="14.0" layoutY="20.0" prefHeight="37.0" prefWidth="235.0" promptText="Esegui una ricerca..." />
+      <TextField fx:id="txtRicerca" layoutX="14.0" layoutY="20.0" prefHeight="38.0" prefWidth="190.0" promptText="Esegui una ricerca..." />
       <Label cache="true" layoutX="279.0" layoutY="21.0" prefHeight="25.0" prefWidth="112.0" text="Visualizza per :">
          <font>
             <Font size="16.0" />
@@ -91,6 +91,8 @@
       </FlowPane>
       <Button fx:id="btnImporta" layoutX="500.0" layoutY="583.0" mnemonicParsing="false" onAction="#importa" text="Importa" />
       <RadioButton fx:id="filterCap" layoutX="407.0" layoutY="49.0" mnemonicParsing="false" onAction="#filtraggioCap" prefHeight="18.0" prefWidth="58.0" text="Cap" />
+      <Button fx:id="btnSearch" layoutX="204.0" layoutY="20.0" mnemonicParsing="false" onAction="#ricerchiamo" prefHeight="26.0" prefWidth="23.0" />
+      <Button fx:id="btnAnnullaRicerca" layoutX="170.0" layoutY="26.0" mnemonicParsing="false" onAction="#Annulliamo" text="X" />
     
    </children>
 </AnchorPane>

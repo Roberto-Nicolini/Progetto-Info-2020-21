@@ -103,7 +103,10 @@ public class ModificaController implements Initializable {
     private void modifica(ActionEvent event) throws ParserConfigurationException, TransformerException, TransformerConfigurationException, IOException {
         TextField[] arrtxtfld= {txtfld1,txtfld2,txtfld3,txtfld4,txtfld5,txtfld6,txtfld7,txtfld8};  
         int z=0;
-       
+        int x=0;
+        int y=0;
+       String citta ="";
+       String ragSoc = "";
             for(int g=0;g<arrtxtfld.length;g++){
             if(arrtxtfld[g].getText().isEmpty()){
                 arrtxtfld[g]= null;
@@ -125,22 +128,30 @@ public class ModificaController implements Initializable {
                     txtflderor.setVisible(true);
                     return;
                    }try{
-                Rubrica.getlistClienti().get(g).setAffidabilita(Integer.parseInt(txtfld8.getText()));
+              x=Integer.parseInt(txtfld8.getText());
                    }catch(NumberFormatException e){
                         txtflderor.setVisible(true);
-                       txtflderor.setText("L'affidabilità deve essere un numero intero cmpreso tra 0 e 10");
+                       txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
                        return;
-                   }
+                   } if(Integer.valueOf(txtfld8.getText())<0 || Integer.valueOf(txtfld8.getText())>10){
+                 txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
+                    txtflderor.setVisible(true);
+                 return;
+                        }
                    if(txtfld3.getText().isEmpty()){
                      txtflderor.setText("Inserisci il cap");
                     txtflderor.setVisible(true);
                     return;
                  }
                    try{
-                Rubrica.getlistClienti().get(g).setCap(Integer.parseInt(txtfld3.getText()));
+                  y=  Integer.parseInt(txtfld3.getText());
                    }catch(NumberFormatException e){
                        txtflderor.setVisible(true);
                        txtflderor.setText("Il cap deve essere un numero intero");
+                       return;
+                   }if(txtfld3.getText().length()>6){
+                       txtflderor.setVisible(true);
+                       txtflderor.setText("Il cap non può superare 6 caratteri");
                        return;
                    }
                if(txtfld1.getText().isEmpty()){
@@ -154,33 +165,33 @@ public class ModificaController implements Initializable {
         
                 
                   ragSoc1.setCharAt(0, r1);
-                    String ragSoc=ragSoc1.toString();
-                Rubrica.getlistClienti().get(g).setRagSoc(ragSoc); 
+                   ragSoc=ragSoc1.toString();
+                 
                 }
                if(txtfld5.getText().isEmpty()){
                     txtflderor.setText("Inserisci la email");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(g).setEmail(txtfld5.getText());
+              
                 if(txtfld6.getText().isEmpty()){
                     txtflderor.setText("Inserisci l'indirizzo");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(g).setIndirizzo(txtfld6.getText());   
+               
                 if(txtfld7.getText().isEmpty()){
                     txtflderor.setText("Inserisci la partita iva");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(g).setPiva(txtfld7.getText());     
+             
                 if(txtfld4.getText().isEmpty()){
                     txtflderor.setText("Inserisci il telefono");
                     txtflderor.setVisible(true);
                     return;
                }
-                Rubrica.getlistClienti().get(g).setTelefono(txtfld4.getText());  
+               
                 if(txtfld2.getText().isEmpty()){
                     txtflderor.setText("Inserisci la città");
                     txtflderor.setVisible(true);
@@ -192,21 +203,48 @@ public class ModificaController implements Initializable {
         
         
         citta1.setCharAt(0, r3);
-        String citta=citta1.toString();
-              Rubrica.getlistClienti().get(g).setCitta(citta);   
+        citta=citta1.toString();
+            
             }
-        
-          
+        for(int v=0;v<arrtxtfld.length;v++){
+             if(arrtxtfld[v].getText().length()>25){
+            txtflderor.setText("I campi non possono superare più di 25 caratteri");
+            arrtxtfld[v].setText("");
+            txtflderor.setVisible(true);
+            return;
+        }  ArrayList <String> note = new ArrayList<String>();
+             int ei=0;
+              Cliente f=new Cliente(x,y,txtfld5.getText(),ragSoc,txtfld7.getText(),txtfld4.getText(),txtfld6.getText(),citta,note);
+             for(int h=0;h<Rubrica.getlistClienti().size();h++){
+              
+                 if(f.toString().equals(Rubrica.getlistClienti().get(h).toString())){
+                   ei++;
+                  
+                 }
+                
+             }
+             if(ei>0){
+                    
+                       txtflderor.setText("Cliente già esistente, non è possibile modificare con quetsi parametri");
+                     txtflderor.setVisible(true);
+                     return;
+                 }
+              Rubrica.getlistClienti().get(g).setCitta(citta);   
+                Rubrica.getlistClienti().get(g).setRagSoc(ragSoc);   
+                  Rubrica.getlistClienti().get(g).setTelefono(txtfld4.getText());   
+                    Rubrica.getlistClienti().get(g).setAffidabilita(x);   
+                      Rubrica.getlistClienti().get(g).setCap(y);   
+                        Rubrica.getlistClienti().get(g).setPiva(txtfld7.getText());   
+                          Rubrica.getlistClienti().get(g).setIndirizzo(txtfld6.getText());   
+            Rubrica.getlistClienti().get(g).setEmail(txtfld5.getText());   
               Cliente.create();
-               for(int k=0;k<listClienti.size();k++){
-         System.out.println(Rubrica.getlistClienti().get(k).getRagSoc());
-     }
+             
                 Stage stage = (Stage) txtfld1.getScene().getWindow();
                 stage.close();
                 
         
     }
-
+    }
     @FXML
     private void Annulla(ActionEvent event) {
         listClienti.clear();

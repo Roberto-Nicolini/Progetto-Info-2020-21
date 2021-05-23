@@ -91,9 +91,9 @@ public class AggiungiController implements Initializable {
 
     @FXML
     private void aggiungiCliente(ActionEvent event) throws ParserConfigurationException, TransformerException, TransformerConfigurationException, IOException {
-       TextField[] arrtxtfld= {txtfld1,txtfld2,txtfld3,txtfld4,txtfld5,txtfld6,txtfld7,txtfld8};    
-       int cap;
-       int aff;
+       TextField[] arrtxtfld= {txtfld1,txtfld2,txtfld3,txtfld4,txtfld5,txtfld6,txtfld7};    
+       int cap=0;
+       int aff=0;
        int z=0;
         for(int g=0;g<arrtxtfld.length;g++){
             if(arrtxtfld[g].getText().isEmpty()){
@@ -110,6 +110,11 @@ public class AggiungiController implements Initializable {
                     return;
                 }
             }
+             if(txtfld1.getText().isEmpty()){
+            txtflderor.setText("Inserire la ragione sociale");
+            txtflderor.setVisible(true);
+            return;
+        }   
        StringBuilder ragSoc1=new StringBuilder(txtfld1.getText());
         char r=ragSoc1.charAt(0);
         char r1=Character.toUpperCase(r);
@@ -117,7 +122,7 @@ public class AggiungiController implements Initializable {
         
         ragSoc1.setCharAt(0, r1);
         String ragSoc=ragSoc1.toString();
-        
+  
         if(txtfld2.getText().isEmpty()){
             txtflderor.setText("Inserire la città");
             txtflderor.setVisible(true);
@@ -132,6 +137,10 @@ public class AggiungiController implements Initializable {
         String citta=citta1.toString();
         if(txtfld3.getText().isEmpty()){
             txtflderor.setText("Inserire il cap");
+            txtflderor.setVisible(true);
+            return;
+        }if(txtfld3.getText().length()>6){
+            txtflderor.setText("Il cap non può superare 6 caratteri");
             txtflderor.setVisible(true);
             return;
         }
@@ -168,24 +177,47 @@ public class AggiungiController implements Initializable {
         String piva= txtfld7.getText();
         if(txtfld8.getText().isEmpty()){
          aff=0;
-        }
-        else{
+        }else{
+        
        try{
         aff= Integer.parseInt(txtfld8.getText());
        }catch(NumberFormatException E){
            txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
             txtflderor.setVisible(true);
             return;
-       }}
+       }} if(aff<0 || aff>10){
+           txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
+            txtflderor.setVisible(true);
+            return;
+       }
         ArrayList <String> note = new ArrayList<String>();
-        
+        for(int g=0;g<arrtxtfld.length;g++){
+             if(arrtxtfld[g].getText().length()>25){
+            txtflderor.setText("I campi non possono superare più di 25 caratteri");
+            arrtxtfld[g].setText("");
+            txtflderor.setVisible(true);
+            return;
+        }
+        }
+       int k=0;
         
         Cliente a= new Cliente(aff,cap,email,ragSoc,piva,tel,indirizzo,citta,note);
-        Rubrica.getlistClienti().add(a);
-        Cliente.create();
+        for(int i=0;i<Rubrica.getlistClienti().size();i++){
+                     if(a.toString().equals(Rubrica.getlistClienti().get(i).toString())){
+                        k++; 
+                     }
+                     
+                 }if(k>0){
+                    txtflderor.setText("Cliente già esistente, non è possibile l'aggiunta");
+                    txtflderor.setVisible(true);
+                 }else{
+                     Rubrica.getlistClienti().add(a);
+                     Cliente.create();
         Stage stage=(Stage) btnelimina1.getScene().getWindow();
         stage.close();
-        
+                 }
+       
+     
    }
 
     @FXML

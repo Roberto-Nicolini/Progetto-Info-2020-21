@@ -23,3 +23,12 @@
 -fx-text-fill: black;
 -fx-background-radius: 20;
 }
+
+#btnAnnullaRicerca{
+    -fx-background-color: transparent;
+}
+
+#btnSearch{
+   
+    -fx-background-color: transparent;
+}

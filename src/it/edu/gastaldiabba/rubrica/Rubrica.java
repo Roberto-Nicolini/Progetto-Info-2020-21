@@ -43,7 +43,7 @@ public class Rubrica extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("view/FXMLDocument.fxml"));
        primaryStage.setTitle("Rubrica");
         primaryStage.setScene(new Scene(root));
-      
+       primaryStage.resizableProperty().setValue(Boolean.FALSE);
 
        /*
         popupStage = new Stage();
