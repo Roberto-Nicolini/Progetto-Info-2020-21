@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1000.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.FXMLDocumentController">
    <children>
-      <Button fx:id="btnImporta" layoutX="63.0" layoutY="605.0" mnemonicParsing="false" onAction="#importa" prefHeight="24.0" prefWidth="120.0" text="Importa">
+      <Button fx:id="btnImporta" layoutX="63.0" layoutY="595.0" mnemonicParsing="false" onAction="#importa" prefHeight="18.0" prefWidth="58.0" text="Importa">
          <font>
             <Font size="11.0" />
          </font></Button>
