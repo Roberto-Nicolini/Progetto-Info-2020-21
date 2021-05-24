@@ -25,9 +25,9 @@ import javax.xml.transform.TransformerException;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author galor
+  *@author Nicolini, Fieschi, Stalfieri
  */
+
 public class Rubrica extends Application {
      public static ObservableList<Cliente> listClienti = FXCollections.observableArrayList();
    

@@ -17,42 +17,46 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="1000.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.edu.gastaldiabba.rubrica.controller.FXMLDocumentController">
    <children>
-      <Pane layoutX="603.0" layoutY="78.0" prefHeight="278.0" prefWidth="395.0">
+      <Button fx:id="btnImporta" layoutX="63.0" layoutY="605.0" mnemonicParsing="false" onAction="#importa" prefHeight="24.0" prefWidth="120.0" text="Importa">
+         <font>
+            <Font size="11.0" />
+         </font></Button>
+      <Pane layoutX="611.0" layoutY="78.0" prefHeight="278.0" prefWidth="395.0">
          <children>
-            <TextArea fx:id="txtDettagli" editable="false" layoutX="14.0" layoutY="21.0" prefHeight="253.0" prefWidth="359.0">
+            <TextArea fx:id="txtDettagli" editable="false" layoutX="11.0" layoutY="19.0" prefHeight="251.0" prefWidth="365.0">
                <font>
-                  <Font size="17.0" />
+                  <Font size="18.0" />
                </font></TextArea>
-            <Label cache="true" layoutX="24.0" layoutY="-5.0" prefHeight="26.0" prefWidth="119.0" text="Dettagli Cliente :">
+            <Label cache="true" layoutX="16.0" layoutY="-9.0" prefHeight="26.0" prefWidth="119.0" text="Dettagli Cliente :">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Label>
          </children>
       </Pane>
       <TextField fx:id="txtRicerca" layoutX="14.0" layoutY="20.0" prefHeight="38.0" prefWidth="190.0" promptText="Esegui una ricerca..." />
-      <Label cache="true" layoutX="279.0" layoutY="21.0" prefHeight="25.0" prefWidth="112.0" text="Visualizza per :">
+      <Label cache="true" layoutX="260.0" layoutY="21.0" prefHeight="25.0" prefWidth="112.0" text="Visualizza per :">
          <font>
-            <Font size="16.0" />
+            <Font size="17.0" />
          </font></Label>
-      <RadioButton fx:id="filterRag" layoutX="407.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioRag" text="Ragione Sociale" />
-      <RadioButton fx:id="filterAff" layoutX="625.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioAff" text="Affidabilità" />
-      <RadioButton fx:id="filterCitta" layoutX="546.0" layoutY="24.0" mnemonicParsing="false" onAction="#filtraggioCitta" text="Città" />
+      <RadioButton fx:id="filterRag" layoutX="384.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioRag" text="Ragione Sociale" />
+      <RadioButton fx:id="filterAff" layoutX="652.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioAff" text="Affidabilità" />
+      <RadioButton fx:id="filterCitta" layoutX="512.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioCitta" text="Città" />
       <RadioButton fx:id="filterCres" layoutX="869.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioCres" text="Crescente" />
       <RadioButton fx:id="filterDecr" layoutX="869.0" layoutY="55.0" mnemonicParsing="false" onAction="#filtraggioDecr" text="Decrescente" />
       <Label cache="true" layoutX="786.0" layoutY="20.0" prefHeight="25.0" prefWidth="79.0" text="In ordine :">
          <font>
-            <Font size="14.0" />
-         </font></Label>
-      <ListView fx:id="listClienti" layoutX="14.0" layoutY="78.0" onMouseClicked="#selection" prefHeight="495.0" prefWidth="604.0" />
-      <Label cache="true" layoutX="626.0" layoutY="353.0" prefHeight="37.0" prefWidth="119.0" text="Note del Cliente :">
-         <font>
             <Font size="15.0" />
+         </font></Label>
+      <ListView fx:id="listClienti" layoutX="14.0" layoutY="79.0" onMouseClicked="#selection" prefHeight="514.0" prefWidth="600.0" />
+      <Label cache="true" layoutX="630.0" layoutY="357.0" prefHeight="37.0" prefWidth="128.0" text="Note del Cliente :">
+         <font>
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="scrlpanenote" hbarPolicy="NEVER" layoutX="617.0" layoutY="384.0" prefHeight="224.0" prefWidth="370.0">
+      <ScrollPane fx:id="scrlpanenote" hbarPolicy="NEVER" layoutX="624.0" layoutY="391.0" prefHeight="223.0" prefWidth="366.0">
          <content>
-            <VBox fx:id="hboxNote" alignment="TOP_CENTER" prefHeight="244.0" prefWidth="376.0" />
+            <VBox fx:id="hboxNote" alignment="TOP_CENTER" layoutX="-2.0" layoutY="-3.0" prefHeight="244.0" prefWidth="360.0" />
          </content>
       </ScrollPane>
       <HBox fx:id="hboxCrud" layoutX="63.0" layoutY="624.0" prefHeight="80.0" prefWidth="536.0">
@@ -89,10 +93,14 @@
             </ToggleButton>
          </children>
       </FlowPane>
-      <Button fx:id="btnImporta" layoutX="500.0" layoutY="583.0" mnemonicParsing="false" onAction="#importa" text="Importa" />
-      <RadioButton fx:id="filterCap" layoutX="407.0" layoutY="49.0" mnemonicParsing="false" onAction="#filtraggioCap" prefHeight="18.0" prefWidth="58.0" text="Cap" />
-      <Button fx:id="btnSearch" layoutX="204.0" layoutY="20.0" mnemonicParsing="false" onAction="#ricerchiamo" prefHeight="26.0" prefWidth="23.0" />
-      <Button fx:id="btnAnnullaRicerca" layoutX="170.0" layoutY="26.0" mnemonicParsing="false" onAction="#Annulliamo" text="X" />
+      <RadioButton fx:id="filterCap" layoutX="588.0" layoutY="25.0" mnemonicParsing="false" onAction="#filtraggioCap" prefHeight="18.0" prefWidth="58.0" text="Cap" />
+      <Button fx:id="btnSearch" layoutX="197.0" layoutY="17.0" mnemonicParsing="false" onAction="#ricerchiamo" prefHeight="35.0" prefWidth="37.0" />
+      <Button fx:id="btnAnnullaRicerca" layoutX="163.0" layoutY="20.0" mnemonicParsing="false" onAction="#Annulliamo" prefHeight="37.0" prefWidth="37.0" text="X" />
+      <Label cache="true" layoutX="21.0" layoutY="66.0" prefHeight="15.0" prefWidth="52.0" text="Affidabilità:">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
     
    </children>
 </AnchorPane>

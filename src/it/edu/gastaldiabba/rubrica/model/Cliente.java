@@ -145,7 +145,7 @@ public class Cliente {
        
     public String getDettagli(){
        return("Ragione sociale: "+ getRagSoc()+ "\nCitta: "+getCitta()+ "\nCap: "+getCap()+ "\nTelefono: "+getTelefono()+ 
-               "\nEmail: "+getEmail()+ "\nIndirizzo "+ getIndirizzo()+ "\nAffidabilita: "+getAffidabilita()+ "\nPartita Iva:"+ getPiva());
+               "\nEmail: "+getEmail()+ "\nIndirizzo "+ getIndirizzo()+ getIndirizzo()+ "\nPartita Iva: "+ getPiva()+ "\nAffidabilita: "+getAffidabilita());
     } 
     public String toStringBold(){
         return("  "+getRagSoc()+" "+getCitta()+" "+getCap());
@@ -155,7 +155,7 @@ public class Cliente {
     }
      public String toString(){
         return("Ragione sociale: "+ getRagSoc()+ "Citta: "+getCitta()+ "Cap: "+getCap()+ "Telefono: "+getTelefono()+ 
-               "Email: "+getEmail()+ "Indirizzo "+ getIndirizzo()+ "Affidabilita: "+getAffidabilita()+ "Partita Iva:"+ getPiva()+ "Note: "+getNote()); 
+               "Email: "+getEmail()+ "Indirizzo: "+ getIndirizzo()+ "Partita Iva: "+ getPiva()+ "Affidabilita: "+getAffidabilita()); 
     }
     
    
