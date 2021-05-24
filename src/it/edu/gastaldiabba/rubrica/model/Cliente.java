@@ -145,7 +145,7 @@ public class Cliente {
        
     public String getDettagli(){
        return("Ragione sociale: "+ getRagSoc()+ "\nCitta: "+getCitta()+ "\nCap: "+getCap()+ "\nTelefono: "+getTelefono()+ 
-               "\nEmail: "+getEmail()+ "\nIndirizzo "+ getIndirizzo()+ getIndirizzo()+ "\nPartita Iva: "+ getPiva()+ "\nAffidabilita: "+getAffidabilita());
+               "\nEmail: "+getEmail()+ "\nIndirizzo: "+ getIndirizzo()+ "\nPartita Iva: "+ getPiva()+ "\nAffidabilita: "+getAffidabilita());
     } 
     public String toStringBold(){
         return("  "+getRagSoc()+" "+getCitta()+" "+getCap());
