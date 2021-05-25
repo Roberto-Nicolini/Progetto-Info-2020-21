@@ -45,25 +45,6 @@ public class Rubrica extends Application {
         primaryStage.setScene(new Scene(root));
        primaryStage.resizableProperty().setValue(Boolean.FALSE);
 
-       /*
-        popupStage = new Stage();
-        popupStage1=new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/Aggiungi.fxml"));
-         FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("view/Modifica.fxml"));
-         Parent popupRoot = fxmlLoader.load();
-         Parent popupRoot1 = fxmlLoader1.load();
-        popupController = fxmlLoader.getController(); // salva riferimento a controller del popup
-        popupStage.setScene(new Scene(popupRoot));
-        popupStage.setTitle("Aggiungi Cliente");
-        popupStage.initModality(Modality.APPLICATION_MODAL);
-        popupStage.initOwner(primaryStage);
-        
-        popupController1 = fxmlLoader1.getController(); // salva riferimento a controller del popup
-        popupStage1.setScene(new Scene(popupRoot1));
-        popupStage1.setTitle("Modifica Cliente");
-        popupStage1.initModality(Modality.APPLICATION_MODAL);
-        popupStage1.initOwner(primaryStage);
-       */
         primaryStage.show();
     }
      public static ObservableList<Cliente> getlistClienti() {

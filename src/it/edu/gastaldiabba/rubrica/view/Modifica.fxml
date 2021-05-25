@@ -18,7 +18,7 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="btneliminatutto" layoutX="340.0" layoutY="420.0" mnemonicParsing="false" onAction="#eliminatutto" prefHeight="38.0" prefWidth="87.0" text="Elimina Tutto" />
+      <Button fx:id="btneliminatutto" layoutX="307.0" layoutY="420.0" mnemonicParsing="false" onAction="#eliminatutto" prefHeight="38.0" prefWidth="120.0" text="Elimina Tutto" />
       <Button fx:id="btnModifica" layoutX="28.0" layoutY="523.0" mnemonicParsing="false" onAction="#modifica" prefHeight="38.0" prefWidth="120.0" text="Modifica">
          <font>
             <Font size="18.0" />

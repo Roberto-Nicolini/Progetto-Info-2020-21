@@ -22,6 +22,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -621,6 +622,7 @@ public class FXMLDocumentController implements Initializable {
                 txtAff.setText(String.valueOf(name.getAffidabilita()).toString());
                 txtAff.setPrefSize(30, 30);
                 txtAff.setEditable(false);
+                txtAff.setAlignment(Pos.CENTER);
                 a.setText(name.toStringBold());
                 a.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
                 b.setText(name.toStringNorm());
@@ -655,7 +657,7 @@ public class FXMLDocumentController implements Initializable {
         btnModifica.setDisable(true);
         btnAggiungiNota.setDisable(true);
        btnModificaNota.setDisable(true);
-       hboxNote.setPadding(new Insets(0, 26, 20, 0));
+    //   hboxNote.setPadding(new Insets(0, 26, 20, 0));
        
        
  }
@@ -679,12 +681,13 @@ public class FXMLDocumentController implements Initializable {
         if(a.getNote().size()>0){
         for(int i=0;i<a.getNote().size();i++){
             noteVisual.add(new TextArea(a.getNote().get(i)));
-            noteVisual.get(i).setPrefSize(100, 25);
+           noteVisual.get(i).setPrefSize(360, 25);
             noteVisual.get(i).setWrapText(true);
             
         }
         for(int b=0;b<noteVisual.size();b++){
         hboxNote.getChildren().add(noteVisual.get(b));
+        
         }}
         }
     
@@ -694,7 +697,7 @@ public class FXMLDocumentController implements Initializable {
     private void aggiungiNota(ActionEvent event) {
         btnElimina.setSelected(false);
         TextArea txt = new TextArea("");
-        txt.setPrefSize(120, 20);
+        txt.setPrefSize(2, 25);
         Cliente a=listClienti.getSelectionModel().getSelectedItem();
         hboxNote.getChildren().add(0,txt);
         noteVisual.add(0,txt);
@@ -767,6 +770,7 @@ public class FXMLDocumentController implements Initializable {
             Parent root = loader.load();
        
             Stage stage = new Stage();
+             stage.resizableProperty().setValue(Boolean.FALSE);
             stage.setScene(new Scene(root));
             stage.setTitle("Aggiungi Cliente");
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -824,7 +828,7 @@ public class FXMLDocumentController implements Initializable {
             stage.setTitle("Modifica Cliente");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(btnElimina.getScene().getWindow());
-           
+             stage.resizableProperty().setValue(Boolean.FALSE);
             stage.showAndWait();
             
          
