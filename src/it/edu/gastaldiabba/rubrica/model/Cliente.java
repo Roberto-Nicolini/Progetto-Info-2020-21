@@ -144,8 +144,8 @@ public class Cliente {
     }
        
     public String getDettagli(){
-       return("Ragione sociale: "+ getRagSoc()+ "\nCitta: "+getCitta()+ "\nCap: "+getCap()+ "\nTelefono: "+getTelefono()+ 
-               "\nEmail: "+getEmail()+ "\nIndirizzo: "+ getIndirizzo()+ "\nPartita Iva: "+ getPiva()+ "\nAffidabilita: "+getAffidabilita());
+       return("Ragione sociale: "+ getRagSoc()+ "\nCitta: "+getCitta()+ "\nCAP: "+getCap()+ "\nTelefono: "+getTelefono()+ 
+               "\nEmail: "+getEmail()+ "\nIndirizzo: "+ getIndirizzo()+ "\nPartita IVA: "+ getPiva()+ "\nAffidabilita: "+getAffidabilita());
     } 
     public String toStringBold(){
         return("  "+getRagSoc()+" "+getCitta()+" "+getCap());
@@ -154,8 +154,8 @@ public class Cliente {
         return("  "+getEmail()+" "+" "+getTelefono()+" "+getIndirizzo()+" "+getPiva()); 
     }
      public String toString(){
-        return("Ragione sociale: "+ getRagSoc()+ "Citta: "+getCitta()+ "Cap: "+getCap()+ "Telefono: "+getTelefono()+ 
-               "Email: "+getEmail()+ "Indirizzo: "+ getIndirizzo()+ "Partita Iva: "+ getPiva()+ "Affidabilita: "+getAffidabilita()); 
+        return("Ragione sociale: "+ getRagSoc()+ "Citta: "+getCitta()+ "CAP: "+getCap()+ "Telefono: "+getTelefono()+ 
+               "Email: "+getEmail()+ "Indirizzo: "+ getIndirizzo()+ "Partita IVA: "+ getPiva()+ "Affidabilita: "+getAffidabilita()); 
     }
     
    

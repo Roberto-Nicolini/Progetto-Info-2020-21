@@ -136,23 +136,23 @@ public class AggiungiController implements Initializable {
         citta1.setCharAt(0, r3);
         String citta=citta1.toString();
         if(txtfld3.getText().isEmpty()){
-            txtflderor.setText("Inserire il cap");
+            txtflderor.setText("Inserire il CAP");
             txtflderor.setVisible(true);
             return;
         }if(txtfld3.getText().length()>6){
-            txtflderor.setText("Il cap non può superare 6 caratteri");
+            txtflderor.setText("Il CAP deve essere un numero intero che non può superare i 6 caratteri");
             txtflderor.setVisible(true);
             return;
         }
         try{
         cap=Integer.parseInt(txtfld3.getText());
         }catch(NumberFormatException e){
-            txtflderor.setText("Il cap deve essere un numero intero");
+            txtflderor.setText("Il CAP deve essere un numero intero che non può superare i 6 caratteri");
             txtflderor.setVisible(true);
             return;
         }
         if(txtfld4.getText().isEmpty()){
-            txtflderor.setText("Inserire il telefono");
+            txtflderor.setText("Inserire il numero telefonico");
             txtflderor.setVisible(true);
             return;
         }
@@ -164,13 +164,13 @@ public class AggiungiController implements Initializable {
         }
         String email= txtfld5.getText();
         if(txtfld6.getText().isEmpty()){
-            txtflderor.setText("Inserire Indirizzo");
+            txtflderor.setText("Inserire l'indirizzo");
             txtflderor.setVisible(true);
             return;
         }
         String indirizzo = txtfld6.getText();
          if(txtfld7.getText().isEmpty()){
-            txtflderor.setText("Inserire la partita iva");
+            txtflderor.setText("Inserire la partita IVA");
             txtflderor.setVisible(true);
             return;
         }
@@ -182,18 +182,18 @@ public class AggiungiController implements Initializable {
        try{
         aff= Integer.parseInt(txtfld8.getText());
        }catch(NumberFormatException E){
-           txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
+           txtflderor.setText("L'affidabilità deve essere un numero intero compreso tra 0 e 10");
             txtflderor.setVisible(true);
             return;
        }} if(aff<0 || aff>10){
-           txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
+           txtflderor.setText("L'affidabilità deve essere un numero intero compreso tra 0 e 10");
             txtflderor.setVisible(true);
             return;
        }
         ArrayList <String> note = new ArrayList<String>();
         for(int g=0;g<arrtxtfld.length;g++){
              if(arrtxtfld[g].getText().length()>25){
-            txtflderor.setText("I campi non possono superare più di 25 caratteri");
+            txtflderor.setText("I campi non possono superare i 25 caratteri");
             arrtxtfld[g].setText("");
             txtflderor.setVisible(true);
             return;
@@ -208,7 +208,7 @@ public class AggiungiController implements Initializable {
                      }
                      
                  }if(k>0){
-                    txtflderor.setText("Cliente già esistente, non è possibile l'aggiunta");
+                    txtflderor.setText("Cliente già esistente, non è possibile l'aggiunta con questi parametri");
                     txtflderor.setVisible(true);
                  }else{
                      Rubrica.getlistClienti().add(a);

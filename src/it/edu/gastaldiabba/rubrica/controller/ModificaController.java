@@ -124,22 +124,22 @@ public class ModificaController implements Initializable {
             }
             if(listClienti.get(g).equals(a)){
                    if(txtfld8.getText().isEmpty()){
-                    txtflderor.setText("Inserisci l'affidabilità");
+                    txtflderor.setText("Inserire l'affidabilità");
                     txtflderor.setVisible(true);
                     return;
                    }try{
               x=Integer.parseInt(txtfld8.getText());
                    }catch(NumberFormatException e){
                         txtflderor.setVisible(true);
-                       txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
+                       txtflderor.setText("L'affidabilità deve essere un numero intero compreso tra 0 e 10");
                        return;
                    } if(Integer.valueOf(txtfld8.getText())<0 || Integer.valueOf(txtfld8.getText())>10){
-                 txtflderor.setText("L'affidabilità deve essere un numero intero tra 0 e 10");
+                 txtflderor.setText("L'affidabilità deve essere un numero intero compreso tra 0 e 10");
                     txtflderor.setVisible(true);
                  return;
                         }
                    if(txtfld3.getText().isEmpty()){
-                     txtflderor.setText("Inserisci il cap");
+                     txtflderor.setText("Inserire il CAP");
                     txtflderor.setVisible(true);
                     return;
                  }
@@ -147,15 +147,15 @@ public class ModificaController implements Initializable {
                   y=  Integer.parseInt(txtfld3.getText());
                    }catch(NumberFormatException e){
                        txtflderor.setVisible(true);
-                       txtflderor.setText("Il cap deve essere un numero intero");
+                       txtflderor.setText("Il CAP deve essere un numero intero che non può superare i 6 caratteri");
                        return;
                    }if(txtfld3.getText().length()>6){
                        txtflderor.setVisible(true);
-                       txtflderor.setText("Il cap non può superare 6 caratteri");
+                       txtflderor.setText("Il CAP deve essere un numero intero che non può superare i 6 caratteri");
                        return;
                    }
                if(txtfld1.getText().isEmpty()){
-                    txtflderor.setText("Inserisci la ragione sociale");
+                    txtflderor.setText("Inserire la ragione sociale");
                     txtflderor.setVisible(true);
                     return;
                 }else{
@@ -169,31 +169,31 @@ public class ModificaController implements Initializable {
                  
                 }
                if(txtfld5.getText().isEmpty()){
-                    txtflderor.setText("Inserisci la email");
+                    txtflderor.setText("Inserire la mail");
                     txtflderor.setVisible(true);
                     return;
                }
               
                 if(txtfld6.getText().isEmpty()){
-                    txtflderor.setText("Inserisci l'indirizzo");
+                    txtflderor.setText("Inserire l'indirizzo");
                     txtflderor.setVisible(true);
                     return;
                }
                
                 if(txtfld7.getText().isEmpty()){
-                    txtflderor.setText("Inserisci la partita iva");
+                    txtflderor.setText("Inserire la partita IVA");
                     txtflderor.setVisible(true);
                     return;
                }
              
                 if(txtfld4.getText().isEmpty()){
-                    txtflderor.setText("Inserisci il telefono");
+                    txtflderor.setText("Inserire il numero telefonico");
                     txtflderor.setVisible(true);
                     return;
                }
                
                 if(txtfld2.getText().isEmpty()){
-                    txtflderor.setText("Inserisci la città");
+                    txtflderor.setText("Inserire la città");
                     txtflderor.setVisible(true);
                     return;
                 }
@@ -208,7 +208,7 @@ public class ModificaController implements Initializable {
             }
         for(int v=0;v<arrtxtfld.length;v++){
              if(arrtxtfld[v].getText().length()>25){
-            txtflderor.setText("I campi non possono superare più di 25 caratteri");
+            txtflderor.setText("I campi non possono superare i 25 caratteri");
             arrtxtfld[v].setText("");
             txtflderor.setVisible(true);
             return;
@@ -225,7 +225,7 @@ public class ModificaController implements Initializable {
              }
              if(ei>0){
                     
-                       txtflderor.setText("Cliente già esistente, non è possibile modificare con quetsi parametri");
+                       txtflderor.setText("Cliente già esistente, non è possibile modificare con questi parametri");
                      txtflderor.setVisible(true);
                      return;
                  }
