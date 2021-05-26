@@ -161,7 +161,7 @@ public class Cliente {
    
     public static  final String xmlFilePath(){
        String p=getProperty("user.home")+getProperty("file.separator");
-       String x=p+"rubrica.xml";
+       String x=p+"rubricastalfieschinucci.xml";
        return x;
     }
     
